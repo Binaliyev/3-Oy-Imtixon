@@ -79,7 +79,9 @@ async function handleRenderCountrysFn(arr, regex) {
             elCountrysListItems.classList.add("dark");
             elCountrysListItems.classList.remove("light");
         };
-        clone.querySelector(".js-countrys-img").src = png;
+        const elCountrysFlagImg = clone.querySelector(".js-countrys-img");
+        elCountrysFlagImg.src = png? png : "/assets/img/not_found.jpg";
+        elCountrysFlagImg.dataset.id = common;
         if (regex && regex.source != "(?:)") clone.querySelector(".js-countrys-names-title").innerHTML = common.replaceAll(regex, match => `<mark>${match}</mark>`)
         else clone.querySelector(".js-countrys-names-title").textContent = common;
         clone.querySelector(".js-countrys-population-title").textContent = population;
@@ -175,7 +177,7 @@ window.addEventListener("load", () => removeItem("sliceOBJ"));
 elPaginationIncBtn.addEventListener("click", handlePaginationFn);
 elPaginationDecBtn.addEventListener("click", handlePaginationFn);
 elCountrysList.addEventListener("click", evt => {
-    if (evt.target.matches(".js-countrys-list-items")) { setItem("id", evt.target.dataset.id); window.location = "/html/info.html" };
+    if (evt.target.matches(".js-countrys-list-items") || evt.target.matches(".js-countrys-img")) { setItem("id", evt.target.dataset.id); window.location = "/html/info.html" };
 });
 elDarkModeTitle.addEventListener("click", () => {
     if (getItem("mode")) setItem("mode", { light: !(JSON.parse(getItem("mode")).light), dark: !(JSON.parse(getItem("mode")).dark) });

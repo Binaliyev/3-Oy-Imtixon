@@ -41,12 +41,14 @@ const handleRenderBorderCountrys = async arr => {
     }
 }
 async function handleRenderCountryFn([country]) {
-    elCountryInfoBox.querySelector(".js-country-flag-img").src = country.flags.png;
+    elCountryInfoBox.querySelector(".js-country-flag-img").src = country.flags.png? country.flags.png : "/assets/img/not_found.jpg";
     elCountryInfoBox.querySelector(".js-coutry-name").textContent = country.name.common;
     elCountryInfoBox.querySelector(".js-coutry-native-name").textContent = country.name.official;
     elCountryInfoBox.querySelector(".js-coutry-population").textContent = country.population;
     elCountryInfoBox.querySelector(".js-coutry-region").textContent = country.region;
     elCountryInfoBox.querySelector(".js-country-capital").textContent = country.capital;
+    elCountryInfoBox.querySelector(".js-country-subregion").textContent = country.subregion? country.subregion : "Not";
+    elCountryInfoBox.querySelector(".js-country-domain").textContent = country.tld? country.tld : "Not";
     elCountryInfoBox.querySelector(".js-country-currencies").textContent = Object.values(country.currencies)[0].name;
     elCountryInfoBox.querySelector(".js-country-languages").textContent = Object.values(country.languages)[0];
     await handleRenderBorderCountrys(country.borders);
