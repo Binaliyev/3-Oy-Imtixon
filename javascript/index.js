@@ -83,7 +83,7 @@ async function handleRenderCountrysFn(arr, regex) {
         elCountrysFlagImg.src = png? png : "/assets/img/not_found.jpg";
         elCountrysFlagImg.dataset.id = common;
         if (regex && regex.source != "(?:)") clone.querySelector(".js-countrys-names-title").innerHTML = common.replaceAll(regex, match => `<mark>${match}</mark>`)
-        else clone.querySelector(".js-countrys-names-title").textContent = common;
+        else clone.querySelector(".js-countrys-names-title").textContent = common.split(" ").length > 2? common.split(" ").slice(0, 2).join(" ") + "..." : common;
         clone.querySelector(".js-countrys-population-title").textContent = population;
         clone.querySelector(".js-countrys-region-title").textContent = region;
         clone.querySelector(".js-countrys-capital-title").textContent = capital;
